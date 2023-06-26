@@ -8,8 +8,12 @@
 			"path": "../"
 		},
 		{
+			"name": "zephyrsdk",
+			"path": "../../zephyr-sdk-0.16.1"
+		},
+		{
 			"name": "AppUnderDev",
-			"path": "../zephyr/samples/hello_world"
+			"path": "../zephyr/samples/basic/blinky"
 		},
 		{
 			"name": "ZephyrTests",
@@ -22,7 +26,7 @@
 	],
 
 	"settings": {
-		"west": "${env:HOME}/.python_default_venv/bin/west",
+		"west": "${workspaceFolder:zephyrproject}/.venv/Scripts/west.exe",
 		"twister":  {
 			"host_test_arch": "qemu_x86",
 		},
@@ -55,17 +59,22 @@
 			"compile_args": ""
 		},
 
-		"C_Cpp.default.compilerPath": "${env:GNUARMEMB_TOOLCHAIN_PATH}/bin/arm-zephyr-eabi-gcc",
+		// "C:\Users\rmaws\zephyr-sdk-0.16.1\arm-zephyr-eabi\bin\arm-zephyr-eabi-gdb.exe"
+
+		"C_Cpp.default.compilerPath": "${workspaceFolder:zephyrsdk}/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe",
 		"C_Cpp.default.compileCommands": "${config:app.build_dir}/compile_commands.json",
 		"C_Cpp.default.includePath": [
 			"${workspaceFolder:zephyrproject}/zephyr",
-			"${env:GNUARMEMB_TOOLCHAIN_PATH}/arm-zephyr-eabi/include",
-			"${env:GNUARMEMB_TOOLCHAIN_PATH}/arm-zephyr-eabi/sys-include"
+			"${workspaceFolder:zephyrsdk}/arm-zephyr-eabi/arm-zephyr-eabi/include",
+			"${workspaceFolder:zephyrsdk}/arm-zephyr-eabi/arm-zephyr-eabi/sys-include"
 		],
 		
 		"cmake.configureOnOpen": false,
 
 		"files.associations": {
+			"zephyr.h": "c",
+			"device.h": "c",
+			"lora.h": "c"
 		},
 
 		// The number of spaces a tab is equal to. This setting is overridden
@@ -86,7 +95,8 @@
 
 		"files.trimFinalNewlines": true,
 		"editor.formatOnSave": false,
-		"editor.codeActionsOnSave": [],
+		"editor.codeActionsOnSave": [
+		],
 
 		"editor.renderWhitespace": "all",
 
@@ -146,7 +156,25 @@
 		"editor.renderControlCharacters": false,
 		"cortex-debug.variableUseNaturalFormat": false,
 		"dotnetAcquisitionExtension.existingDotnetPath": [
+
 		
-		]
+		],
+		"editor.language.colorizedBracketPairs": [],
+		"cmake.configureArgs": [
+			"-DVCPKG_APPLOCAL_DEPS=ON",
+			"-DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON",
+			"-DVCPKG_MANIFEST_MODE=ON",
+			"-DVCPKG_TARGET_TRIPLET=-static"
+		],
+		"vcpkg.general.enable": true,
+		"vcpkg.target.defaultTriplet": "-static",
+		"vcpkg.target.useStaticLib": true,
+		"cmake.configureSettings": {
+			"CMAKE_TOOLCHAIN_FILE": "C:/Users/rmaws/.vcpkg/scripts/buildsystems/vcpkg.cmake"
+		},
+		"vcpkg.target.installDependencies": true,
+		"vcpkg.target.preferSystemLibs": false,
+		"vcpkg.target.useManifest": true,
+		"vcpkg.target.hostTriplet": "x64-windows"
 	}
 }

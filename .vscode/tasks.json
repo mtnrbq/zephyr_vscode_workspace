@@ -25,6 +25,25 @@
 			"problemMatcher": [ "$gcc" ]
 		},
 		{
+			"label": "West Flash App",
+			"type": "process",
+			"group": "build",
+			"command": "${config:west}",
+			"args": [
+				"flash",
+				"--config",
+				"interface/ftdi/ft232h-module-swd.cfg",
+				"--config",
+				"target/stm32l0_dual_bank.cfg",
+				"--build-dir",
+				"${config:app.build_dir}"
+			],
+			"dependsOn": [
+				//"West Build App"
+			 ],
+			"problemMatcher": [ "$gcc" ]
+		},
+		{
 			"label": "West Build Bootloader",
 			"type": "process",
 			"group": "build",
